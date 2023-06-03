@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kendaraan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Services\KendaraanServiceInterface;
@@ -51,12 +52,12 @@ class KendaraanController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'tahun_keluar'  => 'required|numeric',
-            'warna'         => 'require',
+            'tahun_keluar'  => 'required|string',
+            'warna'         => 'required|string',
             'harga'         => 'required|numeric',
-            'jenis'         => 'require|in:mobil,motor',
-            'detail'        => 'require|array',
-            'detail.mesin'  => 'require'
+            'jenis'         => 'required|in:mobil,motor',
+            'detail'        => 'required|array',
+            'detail.mesin'  => 'required'
         ]);
 
         if ($validator -> fails()) {
@@ -91,7 +92,14 @@ class KendaraanController extends Controller
      */
     public function show($id)
     {
-        //
+        $kendaraan = $this->kendaraanService->getKendaraanId($id);
+        if (!$kendaraan) {
+            return response()->json([
+                'message' => 'Kendaraan not found',
+            ], 404);
+        }
+
+        return response()->json(['message' => 'Berhasil', 'data' => $kendaraan], 200);
     }
 
     /**
@@ -114,7 +122,36 @@ class KendaraanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'tahun_keluar'  => 'required|string',
+            'warna'         => 'required|string',
+            'harga'         => 'required|numeric',
+            'jenis'         => 'required|in:mobil,motor',
+            'detail'        => 'required|array',
+            'detail.mesin'  => 'required'
+        ]);
+
+        if ($validator -> fails()) {
+            return response()->json([
+                'error'     => 'Validasi error',
+                'messages'  => $validator->errors(),
+            ], 400);
+        }
+
+        $data = $request->only([
+            'tahun_keluar',
+            'warna',
+            'harga',
+            'jenis',
+            'detail'
+        ]);
+
+        $kendaraan = $this->kendaraanService->updateKendaraan($data, $id);
+
+        return response()->json([
+            'message' => 'Kendaraan berhasil diupdate',
+            'data' => $kendaraan
+        ]);
     }
 
     /**
@@ -125,6 +162,12 @@ class KendaraanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $kendaraan = $this->kendaraanService->deleteKendaraan($id);
+
+        if (!$kendaraan) {
+            return response()->json(['message' => 'Kendaraan not found'], 404);
+        }
+
+        return response()->json(['message' => 'Kendaraan deleted'], 200);
     }
 }

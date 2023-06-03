@@ -8,4 +8,10 @@ interface KendaraanRepositoryInterface {
 
   public function get();
 
+  public function getId($id);
+
+  public function update(array $data, $id);
+
+  public function delete($id);
+
 }

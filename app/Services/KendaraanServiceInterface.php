@@ -8,4 +8,10 @@ interface KendaraanServiceInterface {
 
   public function getAllKendaraan();
 
+  public function getKendaraanId($id);
+
+  public function updateKendaraan(array $data, $id);
+
+  public function deleteKendaraan($id);
+
 }

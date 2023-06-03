@@ -23,4 +23,19 @@ class KendaraanService implements KendaraanServiceInterface{
     return $this->kendaraanRepository->get();
   }
 
+  public function getKendaraanId($id)
+  {
+    return $this->kendaraanRepository->getId($id);
+  }
+
+  public function updateKendaraan(array $data, $id)
+  {
+   return $this->kendaraanRepository->update($data, $id); 
+  }
+
+  public function deleteKendaraan($id)
+  {
+    return $this->kendaraanRepository->delete($id);
+  }
+
 }
