@@ -1,0 +1,196 @@
+{
+	"info": {
+		"_postman_id": "3cd480a6-c45f-43d8-9a0e-8c98f84457d6",
+		"name": "test-backend-inosoft",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "21359135"
+	},
+	"item": [
+		{
+			"name": "Add Kendaraan",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response header Content-Type should be application/json', function () {\r",
+							"  var contentType = pm.response.headers.get('Content-Type');\r",
+							"  pm.expect(contentType).to.exist;\r",
+							"  pm.expect(contentType).to.include('application/json');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"tahun_keluar\" : \"2002\",\r\n        \"warna\" : \"Merah\",\r\n        \"harga\" : 3000000,\r\n        \"jenis\" : \"mobil\",\r\n        \"detail\" : {\r\n            \"mesin\" : \"500 cc\",\r\n            // \"tipe_suspensi\" : \"monoshock\",\r\n            // \"tipe_transmisi\" : \"auto\",\r\n            \"kapasitas_penumpang\" : \"10 orang\",\r\n            \"tipe\" : \"truk\"\r\n        } \r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/api/kendaraan"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Penjualan",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"kendaraan_id\":\"647cca60dfe3e05df604680c\",\r\n    \"nama_pembeli\": \"nanda\",\r\n    \"harga\": 5000000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/api/penjualan"
+			},
+			"response": []
+		},
+		{
+			"name": "Data Kendaraan",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/api/kendaraan"
+			},
+			"response": []
+		},
+		{
+			"name": "Data Kendaraan By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8000/api/kendaraan/647b6f22eda84123780d2771"
+			},
+			"response": []
+		},
+		{
+			"name": "Stock Kendaraan",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8000/api/kendaraan/getstok"
+			},
+			"response": []
+		},
+		{
+			"name": "Data Penjualan",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8000/api/penjualan"
+			},
+			"response": []
+		},
+		{
+			"name": "Data Penjualan By Id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://127.0.0.1:8000/api/penjualan/647cca8fdfe3e05df604680d"
+			},
+			"response": []
+		},
+		{
+			"name": "Data Laporan Per Kendaraan",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8000/api/penjualan/getLaporan/mobil"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Kendaraan",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"tahun_keluar\" : \"2001\",\r\n        \"warna\" : \"hitam\",\r\n        \"harga\" : 5000000,\r\n        \"jenis\" : \"motor\",\r\n        \"detail\" : {\r\n            \"mesin\" : \"yamaha\",\r\n            \"tipe_suspensi\" : \"paten\",\r\n            \"tipe_transmisi\" : \"paten\"\r\n        } \r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/api/kendaraan/647b6f22eda84123780d2771"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Kendaraan",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://127.0.0.1:8000/api/kendaraan/647b6c4aeda84123780d2770"
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nama\":\"mamat\",\r\n    \"email\":\"mamat@gmail.com\",\r\n    \"password\":\"mat\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/api/register"
+			},
+			"response": []
+		},
+		{
+			"name": "Data User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://127.0.0.1:8000/api/user"
+			},
+			"response": []
+		}
+	]
+}
