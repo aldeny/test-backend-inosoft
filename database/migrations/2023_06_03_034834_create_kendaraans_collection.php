@@ -35,6 +35,6 @@ class CreateKendaraansCollection extends Migration
      */
     public function down()
     {
-        Schema::connection('mongodb')->dropIfExists('kendaraans_collection');
+        Schema::connection('mongodb')->dropIfExists('kendaraans');
     }
 }

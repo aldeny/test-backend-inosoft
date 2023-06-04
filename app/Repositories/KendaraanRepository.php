@@ -46,4 +46,18 @@ class KendaraanRepository implements KendaraanRepositoryInterface {
     }
     return false;
   }
+
+  /* function getStok untuk melihat stok kendaraan */
+  public function getStok()
+  {
+    $stokMobil = Kendaraan::where('jenis','mobil')->count();
+    $stokMotor = Kendaraan::where('jenis','motor')->count();
+
+    $stokKendaraan = [
+      'mobil' => $stokMobil,
+      'motor' => $stokMotor,
+    ];
+
+    return $stokKendaraan;
+  }
 }

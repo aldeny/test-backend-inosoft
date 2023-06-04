@@ -13,23 +13,21 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->string('name');
-            $table->string('email');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+        Schema::connection('mongodb')->create('users', function (Blueprint $collection) {
+            $collection->string('nama');
+            $collection->string('email');
+            $collection->string('password');
+            $collection->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
      *
-     * @return void
+     * @return voida
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::connection('mongodb')->dropIfExists('users');
     }
 }

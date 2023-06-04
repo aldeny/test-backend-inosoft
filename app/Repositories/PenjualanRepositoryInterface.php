@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-interface KendaraanRepositoryInterface {
+interface PenjualanRepositoryInterface {
 
   public function create (array $data);
 
@@ -13,7 +13,5 @@ interface KendaraanRepositoryInterface {
   public function update(array $data, $id);
 
   public function delete($id);
-
-  public function getStok();
 
 }

@@ -170,4 +170,14 @@ class KendaraanController extends Controller
 
         return response()->json(['message' => 'Kendaraan deleted'], 200);
     }
+
+    public function getStokAll()
+    {
+        $data = $this->kendaraanService->getStokKendaraan();
+
+        return response()->json([
+            'message' => 'Berhasil',
+            'data' => $data
+        ], 200);
+    }
 }

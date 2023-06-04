@@ -14,4 +14,6 @@ interface KendaraanServiceInterface {
 
   public function deleteKendaraan($id);
 
+  public function getStokKendaraan();
+
 }

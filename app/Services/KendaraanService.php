@@ -38,4 +38,9 @@ class KendaraanService implements KendaraanServiceInterface{
     return $this->kendaraanRepository->delete($id);
   }
 
+  public function getStokKendaraan()
+  {
+    return $this->kendaraanRepository->getStok();
+  }
+
 }
