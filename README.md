@@ -10,7 +10,8 @@ DB_PASSWORD=
 
 3. jalankan perintah php artisan generate:key
 4. jalankan perintah composer update
-5. terakhir jalankan perintah php artisan serve
+5. kemudian lakukan migrasi collection dengan cara mengetikkan perintah php artisan migrate
+6. terakhir jalankan perintah php artisan serve
 
 Untuk menggunakan endpoint yang telah dikerjakan silahkan import file test-backend-inosoft.postman_collection.json pada aplikasi Postman.
 
